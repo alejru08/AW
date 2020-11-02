@@ -1,0 +1,63 @@
+@media print
+{
+    *{
+        margin: 0;
+        padding: 0;
+    }
+
+    body{
+        margin: 50px;
+    }
+
+    ul:before{
+        content: "Tareas";
+        font-weight: bold;
+        font-size: 20px;
+    }
+    
+    img, .usuario, a, .submit{
+        display: none;
+    }
+
+    .formulario, .botonB{
+        list-style: none;
+    }
+    
+    #tareaN{
+        display:none;
+    }
+
+    .tarea{
+        margin-top: 20px;
+        margin-left: 20px;
+        list-style-type: disc;
+    }
+    
+    .tareaF{
+        text-decoration: line-through;
+        margin-left: 35px;
+    }
+
+    .nombreT{
+        font-weight: bold;
+    }
+
+    .nombreT:after{
+        content: ":";
+    }
+
+    .tag{
+        margin-right: 20px;
+        margin-left: 10px;
+    }
+
+    .tag:before{
+        content: "(";
+    }
+
+    .tag::after{
+        content: ")";
+    }
+
+}
+

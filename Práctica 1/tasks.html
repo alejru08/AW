@@ -1,0 +1,65 @@
+<!--Alejandro Ruiz Martín y Verónica Calzada Álvarez-->
+<!--Práctica 1 (voluntaria): HTML y CSS-->
+
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Tareas</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="tasksScreen.css" media=screen>
+        <link rel="stylesheet" href="tasksPrint.css" media=print>
+        <link rel="icon" href="favicon.webp"> 
+    </head>
+    <body>
+        <div class="encabezado">
+            <div>
+                <img class="logo" src="Logo.jpg">
+            </div>
+            <div class="usuario">
+                <div class="fotoUsu">
+                    <img class="foto" src="usuario.jpg">
+                </div>
+                <div class="datos">
+                    <div class="correo"><strong>usuario@gmail.com</strong></div>
+                    <div>
+                        <a href="" class="desconectar">Desconectar</a>
+                    </div>    
+                </div>
+            </div>
+
+        </div>
+        <div class="app">
+            <ul>
+                <li class="tarea tareaNF">
+                    <label class=nombreT>Preparar práctica aw</label> 
+                    <label class="tag">AW</label>
+                    <label class="tag">Practica</label>
+                    <a href="" class="marcarF">marcar finalizada</a>
+                </li>
+                <li class="tarea tareaF">
+                    <label class=nombreT>Mirar fechas congreso</label>
+                </li>
+                <li class="tarea tareaNF">
+                    <label class=nombreT>Ir al supermercado</label>
+                    <label class="tag">Personal</label>
+                    <a href="" class="marcarF">marcar finalizada</a>
+                </li>
+                <li class="tarea tareaNF">
+                    <label class=nombreT>Mudanza</label>
+                    <label class="tag">Personal</label>
+                    <a href="" class="marcarF">marcar finalizada</a>
+                </li>
+                <li class="formulario">
+                    <input type="text" id="tareaN" name="tarea" />
+                    <buttontype="submit" class="submit">Añadir</button>
+                </li>
+                <li class="botonB">
+                    <a href="" class="borrarL">Eliminar todas las tareas</a>
+                </li>
+            </ul>
+            </div>
+        </div>
+        
+    </body>
+
+</html>
