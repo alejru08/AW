@@ -13,11 +13,11 @@
     <body>
         <div class="encabezado">
             <div>
-                <img class="logo" src="Logo.jpg">
+                <img class="logo" src="Logo.jpg" alt="Logo de la página">
             </div>
             <div class="usuario">
                 <div class="fotoUsu">
-                    <img class="foto" src="usuario.jpg">
+                    <img class="foto" src="usuario.jpg"  alt="Foto del usuario">
                 </div>
                 <div class="datos">
                     <div class="correo"><strong>usuario@gmail.com</strong></div>
@@ -49,15 +49,17 @@
                     <label class="tag">Personal</label>
                     <a href="" class="marcarF">marcar finalizada</a>
                 </li>
-                <li class="formulario">
-                    <input type="text" id="tareaN" name="tarea" />
-                    <buttontype="submit" class="submit">Añadir</button>
-                </li>
-                <li class="botonB">
-                    <a href="" class="borrarL">Eliminar todas las tareas</a>
-                </li>
             </ul>
+
+            <form action="nueva_tarea" class="formulario" method="POST">
+                <input type="text" id="tareaN" name="tarea" />
+                <input type="submit" class="submit" value="Añadir">
+            </form>
+
+            <div class="botonB">
+                <a href="" class="borrarL">Eliminar todas las tareas</a>
             </div>
+
         </div>
         
     </body>
