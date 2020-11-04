@@ -9,9 +9,13 @@ Práctica 1 (voluntaria): HTML y CSS-->*/
     }
     
     .encabezado{
+        width: 100%;
+        left: 0;
+        top:0;
+        position: fixed;
         display: flex;
         flex-direction: row;
-        align-content: center;
+        align-self: flex-start;
         background-color: gainsboro;
         padding: 20px;
     }
@@ -69,7 +73,8 @@ Práctica 1 (voluntaria): HTML y CSS-->*/
         align-content: center;
         width: 500px;
         margin-left: 33%;
-        margin-top: 50px;
+        margin-top: 180px;
+
     }
     
     ul{
