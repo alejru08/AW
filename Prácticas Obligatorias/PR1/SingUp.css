@@ -1,0 +1,60 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: white;
+}
+
+.encabezado
+{
+    background: linear-gradient(lightblue, white);
+    height: 100px;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+h1{
+    color:white;
+    font-size: 90px;
+    text-shadow: 0 0 0.1em black;
+}
+
+.formulario{
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-content: center;
+   align-items: center;
+}
+.user{
+    margin: 10px;
+}
+
+.cabecera{
+    margin-bottom: 3px;
+}
+
+.datos{
+    width: 300px;
+    height: 20px;
+}
+
+.selector{
+    border:1px solid black;
+    padding:5px;
+    border-radius: 5px;
+}
+
+.boton{
+    background-color:lightseagreen;
+    color: black;
+    border: 1px solid black;
+    margin: 15px;
+    cursor: pointer;
+    width: 120px;
+    height: 27px;
+    border-radius: 10px;
+}

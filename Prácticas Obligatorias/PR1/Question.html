@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="Question.css" />
+        <title>Pagina Principal</title>
+    </head>
+
+    <body>
+        <div class="encabezado">
+            <div class="menu">
+                <button class="boton">Preguntas</button>
+                <button class="boton">Sin responder</button>
+                <button class="boton">Usuarios</button>
+            </div>
+            <h1>404</h1>
+            <div class="usuario">
+                <div> <img class="foto" src="user1.jpg" alt="Usuario"></div>
+                <div>  <label>Usuario</label> </div>
+                <div><button class="boton">Cerrar Sesión</button></div>
+            </div>
+        </div>
+        
+        <form action="buscar" class="formulario" method="POST">
+            <input type="submit" class="boton" value="Buscar">
+            <input type="text" id="encontrar" name="Buscador" placeholder="Buscar por título/cuerpo de pregunta" />
+        </form>
+
+        <div class="infoP">
+            <h2>¿Como funciona exactamente nth-child?</h2>
+            <label class="visitas">Vistas 1 veces</label>
+            <div class="votos">
+                <label>0 votos</label>
+                <button class="voto"><img class="imgVoto" src="like.png"></button>
+                <button class="voto"><img class="imgVoto" src="dislike.png"></button>
+            </div>
+            <div class="pregunta">
+                <label class="cuerpo">No acabo de comprender muy bien que hace exactamente y que usos prácticos puede tener</label>
+                <div class="etiquetas">
+                    <div class="etiqueta">css</div>
+                    <div class="etiqueta">html</div>
+                </div>
+                <div class="usuario user">
+                    <div>  <label>Formulada el 19/11/2020</label> </div>
+                    <div> <img class="foto" src="user1.jpg" alt="Usuario"></div>
+                    <div>  <label>Usuario</label> </div>
+                </div>
+            </div>
+
+            <div class="respuestas">
+                <h2>1 Respuestas</h2>
+                <div class="respuesta">
+                    <div class="votos">
+                        <label>0 votos</label>
+                        <button class="voto"><img class="imgVoto" src="like.png"></button>
+                        <button class="voto"><img class="imgVoto" src="dislike.png"></button>
+                    </div>
+                    <label class="cuerpo">La pseudoclase:nth-child() selecciona los hermanos que cumplan cierta condicion definida en la fórmula
+                        an + b. a y b deben ser números enteros, n es un contador. El grupo an representa un ciclo, cada cuantos
+                    elementos se repite;b indica desde donde empezamos a contar. 
+                    </label>
+                    <div class="usuario user">
+                        <div>  <label>Respondido el 19/11/2020</label> </div>
+                        <div> <img class="foto" src="user1.jpg" alt="Usuario"></div>
+                        <div>  <label>Usuario</label> </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="tuRespuesta">
+                <h2>Tu Respuesta</h2>
+                <input type="text" id="newResponse" name="Nueva Respuesta"/>
+                <button class="boton botonR">Publicar tu respuesta</button>
+            </div>
+
+        </div>
+        
+    </body>
+
+</html>

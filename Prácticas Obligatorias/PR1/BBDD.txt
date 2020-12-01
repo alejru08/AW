@@ -1,0 +1,110 @@
+CREATE DATABASE IF NOT EXISTS `404`;
+USE `404`;
+
+CREATE TABLE `Usuario` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(100) NOT NULL,
+  `Foto` BLOB,
+  `Reputacion` int(3) NOT NULL 
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+CREATE TABLE `Etiqueta` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(9) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Etiqueta_Pregunta` (
+  `Id_Pregunta` int(11) NOT NULL,
+  `Id_Etiqueta` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Pregunta` (
+  `Id` int(11) NOT NULL,
+  `Id_Usuario` int(11) NOT NULL,
+  `Fecha` Date,
+  `Titulo` varchar(50) NOT NULL,
+  `Cuerpo` varchar(150) NOT NULL,
+  `Visitas` int(11) NOT NULL,  
+  `Valoracion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Respuesta` (
+  `Id` int(11) NOT NULL,
+  `Id_Usuario` int(11) NOT NULL,
+  `Id_Pregunta` int(11) NOT NULL,
+  `Fecha` Date NOT NULL,
+  `Cuerpo` varchar(150) NOT NULL,
+  `Valoracion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Medalla` (
+  `Id` int(11) NOT NULL,
+  `Nombre` varchar(30) NOT NULL,
+  `Categoria` int(1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+CREATE TABLE `Usuario_Medalla` (
+  `Id_Usuario` int(11) NOT NULL,
+  `Id_Medalla` int(11) NOT NULL,
+  `Obtenidas` int(3) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+
+  ALTER TABLE `Usuario`
+  ADD PRIMARY KEY (`Id`);
+
+  ALTER TABLE `Usuario`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  
+    ALTER TABLE `Pregunta`
+  ADD PRIMARY KEY (`Id`);
+
+  ALTER TABLE `Pregunta`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  
+    ALTER TABLE `Respuesta`
+  ADD PRIMARY KEY (`Id`);
+
+  ALTER TABLE `Respuesta`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  
+    ALTER TABLE `Etiqueta`
+  ADD PRIMARY KEY (`Id`);
+
+  ALTER TABLE `Etiqueta`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+  
+    ALTER TABLE `Medalla`
+  ADD PRIMARY KEY (`Id`);
+
+  ALTER TABLE `Medalla`
+  MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT;
+
+
+  ALTER TABLE `Pregunta`
+  ADD CONSTRAINT `Pregunta_fk_1` FOREIGN KEY (`Id_Usuario`) REFERENCES `Usuario` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+  ALTER TABLE `Respuesta`
+  ADD CONSTRAINT `Respuesta_fk_1` FOREIGN KEY (`Id_Usuario`) REFERENCES `Usuario` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+    ALTER TABLE `Respuesta`
+  ADD CONSTRAINT `Respuesta_fk_2` FOREIGN KEY (`Id_Pregunta`) REFERENCES `Pregunta` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+   ALTER TABLE `Etiqueta_Pregunta`
+  ADD CONSTRAINT `Etiqueta_Pregunta_fk_1` FOREIGN KEY (`Id_Etiqueta`) REFERENCES `Etiqueta` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+   ALTER TABLE `Etiqueta_Pregunta`
+  ADD CONSTRAINT `Etiqueta_Pregunta_fk_2` FOREIGN KEY (`Id_Pregunta`) REFERENCES `Pregunta` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+   ALTER TABLE `Usuario_Medalla`
+  ADD CONSTRAINT `Usuario_Medalla_fk_1` FOREIGN KEY (`Id_Usuario`) REFERENCES `Usuario` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+   ALTER TABLE `Usuario_Medalla`
+  ADD CONSTRAINT `Usuario_Medalla_fk_2` FOREIGN KEY (`Id_Medalla`) REFERENCES `Medalla` (`Id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  
+INSERT INTO contactos ( nombre, Apellidos, FechaNac, Foto) VALUES
+("Javier","Fernández Montoro", "1980-03-21", LOAD_FILE("C:/images.jpg")),
+("Estela", "Hernández de la Fuente", "1979-03-15", LOAD_FILE("C:/images.jpg")),
+("Gloria", "Ruiz Sánchez", "1983-10-01",LOAD_FILE("C:/images.jpg") ),
+("Fermín", "Córdoba Moreno", NULL, LOAD_FILE("C:/images.jpg"));
