@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/Question.css" />
+        <title>404</title>
+    </head>
+
+    <body>
+        <%- include("Encabezado") %>
+
+        <div class="infoP">
+            <h2><%= pregunta.Titulo  %> </h2>
+            <label class="visitas">Vistas <%= pregunta.Visitas  %> veces</label>
+            <div class="votos">
+                <label><%= pregunta.Valoracion  %>  votos</label>
+                <a href="/preguntas/likeP/<%=pregunta.Id %>"><button class="voto"><img class="imgVoto" src="/img/like.png"></button></a>
+                <a href="/preguntas/dislikeP/<%= pregunta.Id %>"><button class="voto"><img class="imgVoto" src="/img/dislike.png"></button></a>
+            </div>
+            <div class="pregunta">
+                <label class="cuerpo"><%= pregunta.Cuerpo  %> </label>
+                <% if(pregunta.Tags.length > 0) { %>
+                    <div class="etiquetas">
+                        <% pregunta.Tags.forEach(t =>{ %>
+                            <div class="etiqueta"><a href="/preguntas/findByTag/<%=t[0]%>"><%=t[1]%></a></div>
+                        <% }); %> 
+                    </div>
+                <% } %>
+                <div class="usuario user">
+                    <div>  <label><%= pregunta.Fecha %> </label> </div>
+                    <div> <img class="foto" src="/usuarios/rutaImg/<%= pregunta.Foto %>"></div> 
+                    <div>  <label><%= pregunta.Usuario %></label> </div>
+                </div>
+            </div>
+
+            <div class="respuestas">
+                <h2><%= pregunta.Respuestas.length %> Respuestas</h2>
+                <% if(pregunta.Respuestas.length > 0) { %>
+                    <% pregunta.Respuestas.forEach(r => { %>
+                        <div class="respuesta">
+                            <div class="votos">
+                                <label><%= r.Valoracion %> votos</label>
+                                <a href="/preguntas/likeR/<%= r.Id %>"><button class="voto"><img class="imgVoto" src="/img/like.png"></button></a>
+                                <a href="/preguntas/dislikeR/<%= r.Id %>"><button class="voto"><img class="imgVoto" src="/img/dislike.png"></button></a>
+                            </div>
+                            <label class="cuerpo"><%= r.Cuerpo %></label>
+                            <div class="usuario user">
+                                <div>  <label><%= r.Fecha %> </label> </div>
+                                <div> <img class="foto" src="/usuarios/rutaImg/<%= r.Foto %>"></div> 
+                                <div>  <label><%= r.Usuario %></label></div>
+                            </div>
+                        </div>
+                    <% }); %>
+                <% } %>
+            </div>
+
+            <div>
+                <form action="/preguntas/answer/<%=pregunta.Id%>" class="tuRespuesta" method="POST">
+                    <h2>Tu Respuesta</h2>
+                    <input type="text" id="newResponse" name="respuesta" required/>
+                    <input type="submit" class="boton botonR" value="Publicar tu respuesta">
+                </form>
+            </div>
+        </div>
+    </body>
+</html>

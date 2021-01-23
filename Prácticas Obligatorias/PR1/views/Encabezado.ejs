@@ -1,0 +1,19 @@
+<div class="encabezado">
+    <div class="menu">
+        <a href="/preguntas/allQuestions"><button class="boton">Preguntas</button></a>
+        <a href="/preguntas/unanswered"><button class="boton">Sin responder</button></a>
+        <a href="/usuarios/users"><button class="boton">Usuarios</button></a>
+    </div>
+    <h1>404</h1>
+    <div class="usuario">
+        <div> <img class="foto" src="/usuarios/userImg"></div>
+        <div>  <label><%= userNick %></label></div>
+        <div><a href="/logout"><button class="boton">Cerrar Sesión</button></a></div>
+    </div>
+</div>
+
+<form action="/preguntas/findByText" class="formulario" method="POST">
+    <input type="submit" class="boton" value="Buscar">
+    <input type="text" id="encontrar" name="Buscador" placeholder="Buscar por título/cuerpo de pregunta" 
+    pattern="^[a-zA-Z0-9_]*$" required/>
+</form>

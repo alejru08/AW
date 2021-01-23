@@ -1,0 +1,30 @@
+<div class="preguntas">
+    <div class="panelI">
+        <label class="num"><%= preguntasL.length %> Preguntas</label>
+        <a href="/preguntas/newQuestion"><button class="boton">Formular Pregunta</button></a>
+    </div>
+    <div class="panelPreguntas">
+        <% if(preguntasL.length > 0 ) { %>
+            <% preguntasL.forEach(p=> { %>
+                <div class="pregunta">
+                    <div class= "datos"> <!-- titulo de la pregunta = enlace-->
+                        <div><a href="/preguntas/question/<%= p.Id %>"><h3><%= p.Titulo %></h3></a></div>
+                        <div><text><%= p.Cuerpo %></text></div>
+                        <% if(p.Tags.length > 0) { %>
+                            <div class="etiquetas"> 
+                                <% p.Tags.forEach(t => { %>
+                                    <div class="etiqueta"><a href="/preguntas/findByTag/<%=t[0]%>"><%=t[1]%></a></div>
+                                <% }); %>
+                            </div>
+                        <% } %>
+                    </div>
+                    <div class="usuario info">
+                        <div>  <label><%= p.Fecha %> </label> </div>
+                        <div> <img class="foto" src="/usuarios/rutaImg/<%= p.Foto %>" alt="Usuario"></div> 
+                        <div>  <a href="/usuarios/user/<%=p.Correo%>"><%= p.Usuario %></label> </div>
+                    </div>
+                </div>
+            <% }); %>
+        <% } %>
+    </div>
+</div>

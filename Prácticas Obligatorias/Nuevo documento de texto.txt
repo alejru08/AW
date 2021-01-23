@@ -1,0 +1,7 @@
+Cerrar conexion en los errores y al final(exit)
+muchos css
+6 etiquetas
+expresion regular en buscar
+
+IMPORTANTE
+multer

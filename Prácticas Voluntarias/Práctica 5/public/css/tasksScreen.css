@@ -1,0 +1,191 @@
+/*Alejandro Ruiz Martín y Verónica Calzada Álvarez
+Práctica 1 (voluntaria): HTML y CSS-->*/
+
+@media screen
+{
+    *{
+        margin:0;
+        padding: 0;
+    }
+    
+    .encabezado{
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        background-color: gainsboro;
+        padding: 20px;
+    }
+    
+    .usuario{
+        display: flex;
+        flex-direction: row;
+        margin-top: 10px;
+        justify-content: right;
+        margin-left: auto;
+    }
+    
+    .fotoUsu{
+        display: flex;
+        justify-content: center;
+        flex-basis: 100px;
+    }
+    
+    .foto{
+        width: 60%;
+        border-radius: 100%;
+        cursor: pointer;
+    }
+    
+    .datos{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+    
+    .desconectar{
+        display: flex;
+        justify-content: right;
+        color:black;
+        font-family: 'Times New Roman', Times, serif;
+        text-decoration: none;
+    
+    }
+    
+    .desconectar:hover{
+        color:white;
+        cursor: pointer;
+    }
+    
+    
+    /*------------------------------*/
+    body{
+        background-image: url("fondo.jpg") ;
+    }
+
+    .app{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-content: center;
+        width: 500px;
+        margin-left: 33%;
+        margin-top: 50px;
+    }
+    
+    ul{
+        list-style: none;
+    }
+    
+    .tarea{
+        height: auto;
+        width: auto;
+        border:1px solid black;
+        margin:10px;
+        height: 30px;
+        align-items: center;
+    }
+    
+    .tareaF{
+        background-color: transparent;
+        text-decoration: line-through;
+    }
+    
+    .tareaNF{
+        display: flex;
+        flex-direction: row;
+        background-color: cadetblue;
+    }
+
+    .nombreT{
+        padding: 5px;
+    }
+    
+    .tag{
+        background-color: cyan;
+        border:1px solid black;
+        margin:5px;
+    }
+    
+    .marcarF{
+        background-color: brown;
+        border:1px solid black;
+        cursor: pointer;
+        text-decoration: none;
+        color:white;
+        height: 20px;
+        margin-left: auto;
+        margin-right: 2px;
+        padding: 2px;
+    }
+    
+    .formulario{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        background-color: blue;
+        border:2px solid black;
+        margin-bottom: 20px;
+        padding: 5px;
+    }
+    
+    #tareaN{
+        width: 400px;
+    }
+    
+    .submit{
+        color:white;
+        background-color: brown;
+        border: 1px solid black;
+        cursor: pointer;
+        margin-left: auto;
+        padding: 4px;
+    }
+    
+    .borrarL{
+        color: white;
+        background-color: grey;
+        border:1px solid black;
+        text-decoration: none;
+        text-align: center;
+        margin: 10px;
+        margin-left: 25%;
+        padding: 10px;
+        padding-left: 40px;
+        padding-right: 40px;
+    }
+
+    /*----------------------------------------*/
+
+    .error{
+        color: red;
+        margin: 10px;
+        align-self: center;
+    }
+
+    .login{
+        display: flex;
+        flex-direction: column;
+        border: 1px solid blue;
+        background-color:lightblue;
+        padding:5px;
+        width: 300px;
+        align-self: center;
+    }
+
+    .bloque{
+        padding: 10px;
+        padding-bottom: 20px;
+    }
+
+    .loginB{
+        border: 1px solid black;
+        cursor: pointer;
+        margin:5px;
+        padding:3px;
+        width: 60px;
+        margin-left: 30%;
+    }
+    
+}
+
+

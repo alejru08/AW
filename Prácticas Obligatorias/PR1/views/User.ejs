@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/User.css" />
+        <title>404</title>
+    </head>
+
+    <body>
+        <%- include("Encabezado") %>
+
+        <div class="datos">
+            <div class="usuario, user">
+                <div> <img class="foto" src="/usuarios/rutaImg/<%= user.Foto %>" alt="Usuario"></div>
+                <div>  <label><%= user.Nick %></label> </div>
+                <div><label>Miembro desde: <%= user.Fecha %></label> </div>
+            </div>
+            <div class="estadisticas"><label>Estadísticas</label></div>
+            <div class="reputacion"><label>Reputacion</label><br><label><%= user.Reputacion %></label></div>
+            <div class="preguntas"><label>Preguntas</label><br><label><%= user.Preguntas %></label></div>
+            <div class="respuestas"><label>Respuestas</label><br><label><%= user.Respuestas %></label></div>
+        </div>
+
+        <div class="logros">
+            <div class="medallas"><label>Medallas</label></div>
+            <div class="bronce"><label>Bronce</label><br><label><%= user.Medallas.Bronce.length %></label></div>
+            <% if(user.Medallas.Bronce.length > 0) { %>
+                <ul class="listaB">
+                <% user.Medallas.Bronce.forEach(m => { %>
+                    <% if (m.Obtenidas == 1) { %>
+                        <li class="medallaB"><%= m.Nombre %></li>
+                    <% } else{ %>
+                        <li class="medallaB rep"><%= m.Nombre %></li>
+                    <% } %>
+                <% }); %>
+                </ul>
+            <% } %>
+            <div class="plata"><label>Plata</label><br><label><%= user.Medallas.Plata.length %></label></div>
+            <% if(user.Medallas.Plata.length > 0) { %>
+                <ul class="listaP">
+                <% user.Medallas.Plata.forEach(m => { %>
+                    <% if (m.Obtenidas == 1){ %>
+                        <li class="medallaP"><%= m.Nombre %></li>
+                    <% } else{ %>
+                        <li class="medallaP rep"><%= m.Nombre %></li>
+                    <% } %>
+                <% }); %>
+                </ul>
+            <% } %>
+            <div class="oro"><label>Oro</label><br><label><%= user.Medallas.Oro.length %></label></div>
+           <%  if(user.Medallas.Oro.length > 0) { %>
+                <ul class="listaO">
+                <% user.Medallas.Oro.forEach(m => { %>
+                    <% if (m.Obtenidas == 1){ %>
+                        <li class="medallaO"><%= m.Nombre %></li>
+                    <% } else{ %>
+                        <li class="medallaO rep"><%= m.Nombre %></li>
+                    <% } %>
+                <% }); %>
+                </ul>
+            <% } %>
+        </div>
+    </body>
+</html>

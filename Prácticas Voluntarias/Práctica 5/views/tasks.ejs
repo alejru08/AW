@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <title>Tareas</title>
+        <meta charset="utf-8" />
+        <link rel="stylesheet" href="/css/tasksScreen.css" media=screen>
+        <link rel="stylesheet" href="/css/tasksPrint.css" media=print>
+        <link rel="icon" href="/img/favicon.webp"> 
+    </head>
+    <body>
+        <div class="encabezado">
+            <div>
+                <img class="logo" src="/img/Logo.jpg" alt="Logo de la página">
+            </div>
+            <div class="usuario">
+                <div class="fotoUsu">
+                    <img class="foto" src="/imagenUsuario" alt="Foto del usuario">
+                </div>
+                <div class="datos">
+                    <div class="correo"><strong><%= userEmail %></strong></div>
+                    <div>
+                        <a href="/logout" class="desconectar">Desconectar</a>
+                    </div>    
+                </div>
+            </div>
+
+        </div>
+        
+        <div class="app">
+            <% if(taskList.length > 0) { %>
+                <ul>
+                <% taskList.forEach(t => { %>
+                    <% if(!t.done) { %>
+                        <li class="tarea tareaNF">
+                            <label class=nombreT> <%= t.text %> </label> 
+                            <% if(t.tags.length > 0) { %>
+                                <% t.tags.forEach(tag => { %>
+                                    <label class="tag"> <%= tag %> </label>
+                                <% }) %>
+                            <% } %>
+                            <a href="/finish/<%=t.id%>" class="marcarF">marcar finalizada</a>
+                        </li>
+                    <% } %>
+                    <% if(t.done) { %>
+                        <li class="tarea tareaF">
+                            <label class=nombreT> <%= t.text %> </label>
+                        </li>
+                    <% } %>
+                <% }) %>
+                </ul>
+            <% } %>
+            
+            <form action="/addTask" class="formulario" method="POST">
+                <input type="text" id="tareaN" name="text" />
+                <input type="submit" class="submit" value="Añadir">
+            </form>
+
+            <div class="botonB">
+                <a href="/deleteCompleted" class="borrarL">Eliminar todas las tareas</a>
+            </div>
+
+        </div>
+        
+    </body>
+
+</html>

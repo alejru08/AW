@@ -11,6 +11,7 @@ let listaTareas = [
 { text: "Mudanza", done: false, tags: ["personal"] },
 ];
 
+/*
 //No finalizadas
 function getToDoTasks(tasks)
 {
@@ -42,16 +43,26 @@ function countDone(tasks)
 }
 
 console.log(countDone(listaTareas));
+*/
 
 //Crea tareas con sus etiquetas
 function createTask(texto)
 {
     let tarea = {text: "", tags:[]};
-    tarea.tags=texto.match(/@\w+[a-zA-Z]/g);
+    let tags = texto.match(/@\w+[a-zA-Z]/g);
+    console.log(tags);
+    if(tags !== null)
+    {
+        tags.forEach(t => {
+            t = t.replace(/\@/, "");
+            tarea.tags.push(t);
+        });
+        console.log(tarea.tags);
+    }
     tarea.text = texto.replace(/@\w+[a-zA-Z]/g, "");
     tarea.text = tarea.text.replace(/\s+/g, " ");
 
     return tarea;
 }
 
-console.log(createTask("Ir a       @deporte entrenar"));
+console.log(createTask("Ir a        @deporte  entrenar"));

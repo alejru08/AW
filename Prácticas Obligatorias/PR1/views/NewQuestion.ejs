@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="/css/NewQuestion.css" />
+        <title>404</title>
+    </head>
+
+    <body>
+        <%- include("Encabezado") %>
+        <h2>Formular una pregunta</h2>
+        <div>
+            <form action="/preguntas/newQuestion" class="pregunta" method="POST">
+                <label class="titulo">Título</label>
+                <label class="descripcion">Se especifico e imagina que estas haciendo la pregunta a otra persona</label>
+                <input type="text" id="titulo" name="Titulo" placeholder="¿Cuál es tu pregunta sobre programación de aplicaciones web?" required />
+                <label class="titulo">Cuerpo</label>
+                <label class="descripcion">Introduce toda la información que alguien necesita para responder su pregunta</label>
+                <input type="text" id="cuerpo" name="Cuerpo" required/>
+                <label class="titulo">Etiquetas</label>
+                <label class="descripcion">Añade hasta 5 etiquetas para describir sobre que trata tu pregunta</label>
+                <input type="text" id="etiquetas" name="Etiquetas" placeholder="Por ejemplo: @node@express">
+                <input type="submit" class="boton" value="Publicar tu pregunta">
+            </form>
+        </div>
+    </body>
+</html>

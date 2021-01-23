@@ -1,0 +1,140 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: white;
+}
+
+.encabezado
+{
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(lightblue, white);
+    height: 100px;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    color:white;
+    font-size: 90px;
+    text-shadow: 0 0 0.1em black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+h3{
+    text-decoration: none;
+}
+
+.usuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+    text-align: center;
+}
+
+.foto{
+    width: 50px;
+    border-radius: 100%;
+}
+
+.formulario{
+   display: flex;
+   flex-direction: row;
+   justify-content: left;
+   align-content: center;
+   align-items: center;
+   margin-top: 20px;
+}
+
+#encontrar{
+    width: 1000px;
+}
+
+.boton{
+    background-color:lightseagreen;
+    color: black;
+    border: 1px solid black;
+    margin: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 27px;
+    border-radius: 10px;
+}
+
+h2{
+    text-align: center;
+}
+
+.panelI{
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.num{
+    margin-right: auto;
+    font-size: large;
+}
+
+.preguntas{
+    display: flex;
+    flex-direction: column;
+    margin-left: 25%;
+    width: 700px;
+}
+
+.panelPreguntas{
+  display: flex;
+  flex-direction: column;
+}
+
+.pregunta{
+    display: flex;
+    flex-direction: row;
+    border: 1px solid black;
+    padding: 7px;
+    padding-left: 10px;
+    margin: 5px;
+}
+
+.datos{
+    width: 80%;
+}
+
+h3{
+    margin-bottom: 5px;
+    color: lightseagreen;
+}
+
+.etiquetas{
+    display:flex;
+    flex-direction: row;
+    margin: 7px;
+}
+
+.etiqueta{
+    background-color: lightblue;
+    color: blue;
+    margin: 3px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.info{
+    border-left: 1px solid black;
+    width: 20%;
+}

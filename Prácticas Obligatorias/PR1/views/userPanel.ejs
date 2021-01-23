@@ -1,0 +1,18 @@
+<div class="filtro">
+    <form action="/usuarios/findUser" class="filtro" method="POST">
+        <input type="text" id="filtrar" name="Filtro" placeholder="Filtrar por usuario"
+        pattern="^[a-zA-Z0-9_]*$" required/>
+        <input type="submit" class="boton" value="Filtrar">
+    </form>
+</div>
+
+<div class="usuarios">
+    <% usuarios.forEach(u => { %>
+        <div class="usuario user">
+            <div> <img class="foto" src="/usuarios/rutaImg/<%= u.Foto %>" alt="Usuario"></div>
+            <div>  <a href="/usuarios/user/<%= u.Correo %>"><%= u.Nick %></a> </div>
+            <div> <label><%= u.Reputacion %></label></div>
+            <div class="etiqueta"> <a href="/preguntas/findByTag/<%=u.TagId%>"><%=u.Etiqueta%></a> </div>
+        </div>
+    <% }); %>
+</div>

@@ -1,0 +1,211 @@
+*{
+    padding: 0;
+    margin: 0;
+}
+
+body{
+    background-color: white;
+}
+
+.encabezado
+{
+    display: flex;
+    flex-direction: row;
+    background: linear-gradient(lightblue, white);
+    height: 100px;
+    justify-content: center;
+    text-align: center;
+    padding-top: 20px;
+    padding-bottom: 10px;
+}
+
+.menu{
+    display: flex;
+    flex-direction: column;
+}
+
+h1{
+    color:white;
+    font-size: 90px;
+    text-shadow: 0 0 0.1em black;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.usuario{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin: 10px;
+}
+
+.foto{
+    width: 50px;
+    border-radius: 100%;
+}
+
+.formulario{
+   display: flex;
+   flex-direction: row;
+   justify-content: left;
+   align-content: center;
+   align-items: center;
+   margin-top: 20px;
+}
+
+#encontrar{
+    width: 1000px;
+}
+
+.boton{
+    background-color:lightseagreen;
+    color: black;
+    border: 1px solid black;
+    margin: 5px;
+    cursor: pointer;
+    width: 150px;
+    height: 27px;
+    border-radius: 10px;
+}
+
+.datos, .logros{
+    display: grid;
+    grid-template-columns: 100px 100px 100px 100px;
+    grid-template-rows: auto auto auto;
+    width: 80%;
+    margin: 10px;
+    align-items: center;
+    justify-content: center;
+}
+
+.user{
+    width: 100px;
+    grid-row: 1 / span 3;
+    grid-column: 1 / span 1;
+    text-align: center;
+}
+
+.estadisticas{
+    grid-column: 2 / span 3;
+    grid-row: 1 / span 1;
+    background-color: cornflowerblue;
+    border-radius: 10%;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.reputacion, .preguntas, .respuestas{
+    margin: 5px;
+    text-align: center;
+}
+
+.reputacion{
+    grid-column: 3 / span 1 ;
+    grid-row: 2 / span 1;
+}
+
+.preguntas{
+    grid-column: 2 / span 1;
+    grid-row: 3 / span 1;
+}
+
+.respuestas{
+    grid-column: 4 / span 1;
+    grid-row: 3 / span 1;
+}
+
+.logros{
+    grid-template-columns: 130px 130px 130px;
+    grid-template-rows: auto auto auto;
+}
+
+.medallas{
+    grid-column: 1 / span 3;
+    grid-row: 4 / span 1;
+    background-color: cornflowerblue;
+    border-radius: 10%;
+    margin-top: 5px;
+    text-align: center;
+}
+
+.bronce{
+    background-color: rgb(182, 103, 58);
+    border: 1px solid brown;
+    grid-row: 5 / span 1;
+    grid-column: 1 / span 1;
+    text-align: center;
+    margin:5px;
+    padding: 2px;
+}
+
+.plata{
+    background-color: silver;
+    border: 1px solid gray;
+    grid-row: 5 / span 1;
+    grid-column: 2 / span 1;
+    text-align: center;
+    margin:5px;
+    padding: 2px;
+}
+
+.oro{
+    background-color: yellow;
+    border: 1px solid gold;
+    grid-row: 5 / span 1;
+    grid-column: 3 / span 1;
+    text-align: center;
+    margin:5px;
+    padding: 2px;
+}
+
+ul{
+    height: 200px;
+}
+
+li{
+    color:white;
+    border-radius: 10%;
+    margin:5px;
+    font-size: 15px;
+    text-decoration: none;
+    list-style: none;
+    padding: 2px;
+}
+
+.listaB{
+    grid-row: 6 / span 1;
+    grid-column: 1 / span 1;
+}
+
+.medallaB{
+    background-color: brown;
+    text-align: center;
+}
+
+.listaP{
+    grid-row: 6 / span 1;
+    grid-column: 2 / span 1;
+}
+
+.medallaP{
+    background-color: gray;
+    text-align: center;
+}
+
+.listaO{
+    grid-row: 6 / span 1;
+    grid-column: 3 / span 1;
+}
+
+.medallaO{
+    background-color: gold;
+    text-align: center;
+}
+
+.rep::after{
+    content: " x2";
+    color: black;
+}
+
+
+
