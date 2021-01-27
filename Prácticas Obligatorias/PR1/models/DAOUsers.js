@@ -13,15 +13,17 @@ class DAOUsers {
             connection.query("SELECT * FROM usuario WHERE Correo = ? AND Password = ?" ,
             [email,password],
             function(err, rows) {
-                connection.release(); // devolver al pool la conexión
                 if (err) {
+                    connection.release();
                     callback(new Error("Error de acceso a la base de datos"));
                 }
                 else {
                     if (rows.length === 0) {
+                        connection.release();
                         callback(null, false); //no está el usuario con el password proporcionado
                     }
                     else {
+                        connection.release();
                         callback(null, rows);
                     }           
                 }
@@ -40,15 +42,17 @@ class DAOUsers {
             connection.query("SELECT Foto FROM usuario WHERE Correo = ?" ,
             [email],
             function(err, rows) {
-                connection.release(); // devolver al pool la conexión
                 if (err) {
+                    connection.release();
                     callback(new Error("Error de acceso a la base de datos"));
                 }
                 else {
                     if (rows.length === 0) {
+                        connection.release();
                         callback(null, false); //no está el usuario 
                     }
                     else {
+                        connection.release();
                         callback(null, rows[0].Foto); //sí está
                     }           
                 }
@@ -66,11 +70,12 @@ class DAOUsers {
                 connection.query("INSERT INTO usuario(Correo, Password, Registro, Nombre, Foto, Reputacion) VALUES (?, ?, ?, ?, ?, ?)",
                 [email, password, date, nick, image, 1],
                 function(err, rows) {
-                    connection.release(); // devolver al pool la conexión
                     if (err) {
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else {
+                        connection.release();
                         callback(null, rows);      
                     }
                 });
@@ -86,9 +91,9 @@ class DAOUsers {
             else { //cargamos la informacion del usuario y sus preguntas
                 connection.query("SELECT * FROM usuario LEFT JOIN pregunta ON Correo = Usuario WHERE Correo = ?",
                 [email], function(err, user){
-                    connection.release();
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{ //cargamos las respuestas
@@ -96,6 +101,7 @@ class DAOUsers {
                         function(err, answ){
                             if(err)
                             {
+                                connection.release();
                                 callback(new Error("Error de acceso a la base de datos"));
                             }
                             else{ //cargamos las medallas
@@ -103,6 +109,7 @@ class DAOUsers {
                                 [email], function(err, med){
                                     if(err)
                                     {
+                                        connection.release();
                                         callback(new Error("Error de acceso a la base de datos"));
                                     }
                                     else{//Manejamos la informacion
@@ -139,6 +146,7 @@ class DAOUsers {
                                                 infoUser.Medallas.Oro.push(medalla);
                                             }
                                         }); 
+                                        connection.release();
                                         callback(null, infoUser);
                                     }
                                 });
@@ -159,14 +167,15 @@ class DAOUsers {
             else { //Obtenemos la información de todos los usuarios
                 connection.query("SELECT * FROM Usuario", [],
                 function(err, users){
-                    connection.release(); // devolver al pool la conexión
                     if (err) { 
+                        connection.release();
                         callback(new Error("Error de conexión a la base de datos"));
                     }
                     else{ //Obtenemos las etiquetas de los usuarios
                         connection.query("SELECT Usuario, Id_Etiqueta, Nombre FROM pregunta JOIN etiqueta_pregunta JOIN etiqueta ON pregunta.Id = Id_Pregunta AND Id_Etiqueta = etiqueta.Id",
                         [], function(err, tags){
                             if (err) { 
+                                connection.release();
                                 callback(new Error("Error de conexión a la base de datos"));
                             }
                             else{ //Manejamos la informacion
@@ -191,6 +200,7 @@ class DAOUsers {
                                     }
                                     usuarios.push(usuario);
                                 });
+                                connection.release();
                                 callback(null, usuarios);
                             }
                         });
@@ -211,14 +221,15 @@ class DAOUsers {
                 connection.query("SELECT * FROM usuario WHERE Nombre REGEXP ?",
                 [text], function(err, users)
                 {
-                    connection.release(); // devolver al pool la conexión
                     if (err) { 
+                        connection.release();
                         callback(new Error("Error de conexión a la base de datos"));
                     }
                     else{ //Obtenemos las etiquetas de los usuarios
                         connection.query("SELECT Usuario, Id_Etiqueta, Nombre FROM pregunta JOIN etiqueta_pregunta JOIN etiqueta ON pregunta.Id = Id_Pregunta AND Id_Etiqueta = etiqueta.Id",
                         [], function(err, tags){
                             if (err) { 
+                                connection.release();
                                 callback(new Error("Error de conexión a la base de datos"));
                             }
                             else{ //Manejamos la informacion
@@ -243,6 +254,7 @@ class DAOUsers {
                                     }
                                     usuarios.push(usuario);
                                 });
+                                connection.release();
                                 callback(null, usuarios);
                             }
                         });

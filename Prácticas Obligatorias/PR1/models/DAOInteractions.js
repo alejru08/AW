@@ -14,8 +14,8 @@ class DAOInteractions {
                 connection.query("SELECT * FROM etiqueta_pregunta JOIN etiqueta ON Id_Etiqueta = Id",
                 [],
                 function(err, tags) {
-                    connection.release(); // devolver al pool la conexión
                     if (err) {
+                        connection.release(); // devolver al pool la conexión
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else { //Agrupamos Preguntas con usuarios
@@ -24,6 +24,7 @@ class DAOInteractions {
                         function(err, questions){
                             if(err)
                             {
+                                connection.release();
                                 callback(new Error("Error de acceso a la base de datos"));
                             }
                             else{ //manejamos la información
@@ -46,6 +47,7 @@ class DAOInteractions {
                                     });
                                     preguntas.push(pregunta);
                                 });
+                                connection.release();
                                 callback(null, preguntas);
                             }
                         });       
@@ -68,6 +70,7 @@ class DAOInteractions {
                 function(err, rows) {
                     connection.release(); // devolver al pool la conexión
                     if (err) {
+                        connection.release();
                         callback(new Error("Error al insertar pregunta en la base de datos"));
                     }
                     else {
@@ -75,6 +78,7 @@ class DAOInteractions {
                         connection.query("SELECT * FROM etiqueta", [],
                         function(err, tagsL){
                             if(err){
+                                connection.release();
                                 callback(new Error("Error de acceso a las etiquetas de la base de datos"));
                             }
                             else{
@@ -102,6 +106,7 @@ class DAOInteractions {
                                         {
                                             if(err)
                                             {
+                                                connection.release();
                                                 callback(new Error("Error en la base de datos los nuevos tags"));
                                             }
                                             else{
@@ -110,6 +115,7 @@ class DAOInteractions {
                                                 function(err, tagsL){
                                                     if(err)
                                                     {
+                                                        connection.release();
                                                         callback(new Error("Error en el acceso a la base de datos"));
                                                     }
                                                     else{
@@ -122,9 +128,11 @@ class DAOInteractions {
                                                         [tagsEtiqueta], function(err, rows){
                                                             if(err)
                                                             {
+                                                                connection.release();
                                                                 callback(new Error("Error al insertar la relacion tag pregunta en la base de datos"));
                                                             }
                                                             else{
+                                                                connection.release();
                                                                 callback(null, true);
                                                             }
                                                         });
@@ -139,15 +147,18 @@ class DAOInteractions {
                                         [tagsEtiqueta], function(err, rows){
                                             if(err)
                                             {
+                                                connection.release();
                                                 callback(new Error("Error en el acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, true);
                                             }
                                         });
                                     }
                                 }
                                 else{
+                                    connection.release();
                                     callback(null, true);
                                 }
                             }
@@ -167,8 +178,8 @@ class DAOInteractions {
                 connection.query("SELECT Id_Pregunta FROM etiqueta_pregunta WHERE Id_Etiqueta = ? ",
                 [tag],
                 function(err, qId) {
-                    connection.release(); // devolver al pool la conexión
                     if (err) {
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{ //Obtenemos todas las etiquetas de esas preguntas
@@ -176,6 +187,7 @@ class DAOInteractions {
                         [], function(err, tags){
                             if(err)
                             {
+                                connection.release();
                                 callback(new Error("Error de acceso a la base de datos")); 
                             }
                             else{
@@ -185,6 +197,7 @@ class DAOInteractions {
                                 function(err, userQuest) {
                                     if(err)
                                     {
+                                        connection.release();
                                         callback(new Error("Error de acceso a la base de datos")); 
                                     }
                                     else{
@@ -215,6 +228,7 @@ class DAOInteractions {
                                             preguntas.push(pregunta);
                                         });
                                         let sol = {preguntas: preguntas, tag: tagResult};
+                                        connection.release();
                                         callback(null, sol);
                                     }
                                 });
@@ -235,20 +249,22 @@ class DAOInteractions {
                 connection.query("SELECT pregunta.Id, Id_Pregunta FROM pregunta LEFT JOIN respuesta ON pregunta.Id = Id_Pregunta",
                 [],
                 function(err, rows) {
-                    connection.release(); // devolver al pool la conexión
                     if (err) {
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{ //Seleccionamos la informacion del usuario y la pregunta
                         connection.query("SELECT * FROM pregunta JOIN usuario ON Correo = Usuario",
                         [], function(err, usu){
                             if (err) {
+                                connection.release();
                                 callback(new Error("Error de acceso a la base de datos"));
                             }
                             else{ //Seleccionamos las etiquetas
                                 connection.query("SELECT * FROM etiqueta JOIN etiqueta_pregunta ON Id = Id_Etiqueta",
                                 [], function(err, tags){
                                     if (err) {
+                                        connection.release();
                                         callback(new Error("Error de acceso a la base de datos"));
                                     }
                                     else{//manejamos la informacion
@@ -276,6 +292,7 @@ class DAOInteractions {
                                             });
                                             preguntas.push(pregunta);
                                         });
+                                        connection.release();
                                         callback(null, preguntas);
                                     }
                                 });
@@ -296,9 +313,9 @@ class DAOInteractions {
             else{ //Obtenemos la tabla de preguntas con sus usuarios
                 connection.query("SELECT * FROM pregunta JOIN usuario ON Correo = Usuario WHERE Titulo REGEXP ?",
                 [text], function(err, questionT){
-                    connection.release();
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{ //Obtenemos tambien las etiquetas
@@ -306,6 +323,7 @@ class DAOInteractions {
                         [text], function(err, questionC){
                             if(err)
                             {
+                                connection.release();
                                 callback(new Error("Error de acceso a la base de datos"));
                             }
                             else{
@@ -313,6 +331,7 @@ class DAOInteractions {
                                 [], function(err, tags){
                                     if(err)
                                     {
+                                        connection.release();
                                         callback(new Error("Error de acceso a la base de datos"));
                                     }
                                     else{ //Vemos que preguntas tienen el texto en el titulo y/o cuerpo
@@ -359,6 +378,7 @@ class DAOInteractions {
                                                 preguntas.push(pregunta);
                                             }
                                         });
+                                        connection.release();
                                         callback(null, preguntas);
                                     }
                                 });
@@ -380,6 +400,7 @@ class DAOInteractions {
                 [Id], function(err, update){
                     connection.release();
                     if(err){
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{
@@ -388,6 +409,7 @@ class DAOInteractions {
                         [Id],
                         function(err, question) {
                             if (err) {
+                                connection.release();
                                 callback(new Error("Error de acceso a la base de datos"));
                             }
                             else {
@@ -395,6 +417,7 @@ class DAOInteractions {
                                 connection.query("SELECT * FROM etiqueta JOIN etiqueta_pregunta ON Id = Id_Etiqueta WHERE Id_pregunta = ?",
                                 [Id], function(err, tags){
                                     if (err) {
+                                        connection.release();
                                         callback(new Error("Error de acceso a la base de datos"));
                                     }
                                     else{
@@ -402,6 +425,7 @@ class DAOInteractions {
                                         connection.query("SELECT * FROM respuesta JOIN Usuario ON respuesta.Correo = Usuario.Correo WHERE Id_Pregunta = ?",
                                         [Id], function(err, answ){
                                             if (err) {
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{ 
@@ -435,6 +459,7 @@ class DAOInteractions {
                                                     }
                                                     pregunta.Respuestas.push(respuesta);
                                                 });
+                                                connection.release();
                                                 callback(null, pregunta);
                                             }
                                         });
@@ -459,9 +484,11 @@ class DAOInteractions {
                     connection.release();
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{
+                        connection.release();
                         callback(null, respuesta);
                     }
                 });
@@ -472,6 +499,7 @@ class DAOInteractions {
     likeQuestion(Id, email, callback){
         this.pool.getConnection(function(err, connection) {
             if (err) { 
+                connection.release();
                 callback(new Error("Error de conexión a la base de datos"));
             }
             else{ //Comprobamos que no ha votado ya esta pregunta
@@ -479,6 +507,7 @@ class DAOInteractions {
                 [email, Id], function(err, comp){
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error al acceder a valoracion de preguntas de la base de datos"));
                     }
                     else{
@@ -488,6 +517,7 @@ class DAOInteractions {
                             [Id], function(err, like){
                                 if(err)
                                 {
+                                    connection.release();
                                     callback(new Error("Error de incrementar voto en la base de datos"));
                                 }
                                 else{ 
@@ -495,12 +525,14 @@ class DAOInteractions {
                                     [Id, email, 1], function(err, ok){
                                         if(err)
                                         {
+                                            connection.release();
                                             callback(new Error("Error al insertar la valoracion acceso a la base de datos"));
                                         }
                                         else{
                                             connection.query("SELECT Usuario FROM pregunta WHERE Id = ?",
                                             [Id], function(err, user){
                                                 if(err){
+                                                    connection.release();
                                                     callback(new Error("Error de acceso a la base de datos"));
                                                 }
                                                 else{
@@ -508,9 +540,11 @@ class DAOInteractions {
                                                     [user[0].Usuario], function(err, rep){
                                                         if(err)
                                                         {
+                                                            connection.release();
                                                             callback(new Error("Error de acceso a la base de datos"));
                                                         }
                                                         else{
+                                                            connection.release();
                                                             callback(null, true);
                                                         }
                                                     });
@@ -522,6 +556,7 @@ class DAOInteractions {
                             });
                         }
                         else{ //ya ha votado
+                            connection.release();
                             callback(null, false);
                         }
                     }
@@ -540,6 +575,7 @@ class DAOInteractions {
                 [email, Id], function(err, comp){
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error al acceder a valoracion de preguntas de la base de datos"));
                     }
                     else{
@@ -549,6 +585,7 @@ class DAOInteractions {
                             [Id], function(err, like){
                                 if(err)
                                 {
+                                    connection.release();
                                     callback(new Error("Error de incrementar voto en la base de datos"));
                                 }
                                 else{ //Inserta la accion
@@ -556,12 +593,14 @@ class DAOInteractions {
                                     [Id, email, -1], function(err, ok){
                                         if(err)
                                         {
+                                            connection.release();
                                             callback(new Error("Error al insertar la valoracion acceso a la base de datos"));
                                         }
                                         else{ //Buscamos al usuario que publico la pregunta y el valor de su reputacion
                                             connection.query("SELECT Usuario, usuario.Reputacion FROM pregunta JOIN usuario ON Usuario = Correo WHERE Id = ?",
                                             [Id], function(err, user){
                                                 if(err){
+                                                    connection.release();
                                                     callback(new Error("Error de acceso a la base de datos"));
                                                 }
                                                 else{ //Comprobamos su reputacion y restamos
@@ -573,9 +612,11 @@ class DAOInteractions {
                                                     [resta, user[0].Usuario], function(err, rep){
                                                         if(err)
                                                         {
+                                                            connection.release();
                                                             callback(new Error("Error de acceso a la base de datos"));
                                                         }
                                                         else{
+                                                            connection.release();
                                                             callback(null, true);
                                                         }
                                                     });
@@ -587,6 +628,7 @@ class DAOInteractions {
                             });
                         }
                         else{ //ya ha votado
+                            connection.release();
                             callback(null, true);
                         }
                     }
@@ -605,6 +647,7 @@ class DAOInteractions {
                 [email, Id], function(err, comp){
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error al acceder a valoracion de preguntas de la base de datos"));
                     }
                     else{
@@ -614,6 +657,7 @@ class DAOInteractions {
                             [Id], function(err, like){
                                 if(err)
                                 {
+                                    connection.release();
                                     callback(new Error("Error de incrementar voto en la base de datos"));
                                 }
                                 else{ 
@@ -621,12 +665,14 @@ class DAOInteractions {
                                     [Id, email, 1], function(err, ok){
                                         if(err)
                                         {
+                                            connection.release();
                                             callback(new Error("Error al insertar la valoracion acceso a la base de datos"));
                                         }
                                         else{
                                             connection.query("SELECT Correo FROM respuesta WHERE Id = ?",
                                             [Id], function(err, user){
                                                 if(err){
+                                                    connection.release();
                                                     callback(new Error("Error de acceso a la base de datos"));
                                                 }
                                                 else{
@@ -634,9 +680,11 @@ class DAOInteractions {
                                                     [user[0].Correo], function(err, rep){
                                                         if(err)
                                                         {
+                                                            connection.release();
                                                             callback(new Error("Error de acceso a la base de datos"));
                                                         }
                                                         else{
+                                                            connection.release();
                                                             callback(null, true);
                                                         }
                                                     });
@@ -648,6 +696,7 @@ class DAOInteractions {
                             });
                         }
                         else{ //ya ha votado
+                            connection.release();
                             callback(null, false);
                         }
                     }
@@ -666,6 +715,7 @@ class DAOInteractions {
                 [email, Id], function(err, comp){
                     if(err)
                     {
+                        connection.release();
                         callback(new Error("Error al acceder a valoracion de preguntas de la base de datos"));
                     }
                     else{
@@ -675,6 +725,7 @@ class DAOInteractions {
                             [Id], function(err, like){
                                 if(err)
                                 {
+                                    connection.release();
                                     callback(new Error("Error de incrementar voto en la base de datos"));
                                 }
                                 else{ //Inserta la accion
@@ -682,12 +733,14 @@ class DAOInteractions {
                                     [Id, email, -1], function(err, ok){
                                         if(err)
                                         {
+                                            connection.release();
                                             callback(new Error("Error al insertar la valoracion acceso a la base de datos"));
                                         }
                                         else{ //Buscamos al usuario que publico la pregunta y el valor de su reputacion
                                             connection.query("SELECT respuesta.Correo, usuario.Reputacion FROM respuesta JOIN usuario ON respuesta.Correo = usuario.Correo WHERE Id = ?",
                                             [Id], function(err, user){
                                                 if(err){
+                                                    connection.release();
                                                     callback(new Error("Error de acceso a la base de datos"));
                                                 }
                                                 else{ //Comprobamos su reputacion y restamos
@@ -699,9 +752,11 @@ class DAOInteractions {
                                                     [resta, user[0].Correo], function(err, rep){
                                                         if(err)
                                                         {
+                                                            connection.release();
                                                             callback(new Error("Error de acceso a la base de datos"));
                                                         }
                                                         else{
+                                                            connection.release();
                                                             callback(null, true);
                                                         }
                                                     });
@@ -713,6 +768,7 @@ class DAOInteractions {
                             });
                         }
                         else{ //ya ha votado
+                            connection.release();
                             callback(null, true);
                         }
                     }
@@ -731,6 +787,7 @@ class DAOInteractions {
                 [Id], function(err, answ){
                     connection.release();
                     if(err){
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{
@@ -753,6 +810,7 @@ class DAOInteractions {
                             connection.query("SELECT * FROM usuario_medalla WHERE Correo = ? AND Id_Medalla = ?",
                             [email, medallaId], function(err, med){
                                 if(err){
+                                    connection.release();
                                     callback(new Error("Error de acceso a la base de datos"));
                                 }
                                 else{
@@ -761,9 +819,11 @@ class DAOInteractions {
                                         connection.query("INSERT INTO usuario_medalla(Correo, Id_Medalla, Obtenidas, Fecha) VALUES (?,?,?,?)",
                                         [email, medallaId, 1, date], function(err, ok){
                                             if(err){
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, ok);
                                             }
                                         });
@@ -772,9 +832,11 @@ class DAOInteractions {
                                         connection.query("UPDATE usuario_medalla SET Obtenidas=Obtenidas+1 WHERE Correo = ? AND Id_Medalla = ?",
                                         [email, medallaId], function(err, ok){
                                             if(err){
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, ok);
                                             }
                                         });
@@ -783,6 +845,7 @@ class DAOInteractions {
                             });
                         }
                         else{
+                            connection.release();
                             callback(null, true);
                         }
                     }
@@ -799,8 +862,8 @@ class DAOInteractions {
             else{
                 connection.query("SELECT * FROM pregunta WHERE Id = ?",
                 [Id], function(err, quest){
-                    connection.release();
                     if(err){
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{
@@ -823,6 +886,7 @@ class DAOInteractions {
                             connection.query("SELECT * FROM usuario_medalla WHERE Correo = ? AND Id_Medalla = ?",
                             [email, medallaId], function(err, med){
                                 if(err){
+                                    connection.release();
                                     callback(new Error("Error de acceso a la base de datos"));
                                 }
                                 else{
@@ -831,9 +895,11 @@ class DAOInteractions {
                                         connection.query("INSERT INTO usuario_medalla(Correo, Id_Medalla, Obtenidas, Fecha) VALUES (?,?,?,?)",
                                         [email, medallaId, 1, date], function(err, ok){
                                             if(err){
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, ok);
                                             }
                                         });
@@ -842,9 +908,11 @@ class DAOInteractions {
                                         connection.query("UPDATE usuario_medalla SET Obtenidas=Obtenidas+1 WHERE Correo = ? AND Id_Medalla = ?",
                                         [email, medallaId], function(err, ok){
                                             if(err){
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, ok);
                                             }
                                         });
@@ -853,6 +921,7 @@ class DAOInteractions {
                             });
                         }
                         else{
+                            connection.release();
                             callback(null, true);
                         }
                     }
@@ -869,8 +938,8 @@ class DAOInteractions {
             else{
                 connection.query("SELECT * FROM pregunta WHERE Id = ?",
                 [Id], function(err, quest){
-                    connection.release();
                     if(err){
+                        connection.release();
                         callback(new Error("Error de acceso a la base de datos"));
                     }
                     else{
@@ -896,6 +965,7 @@ class DAOInteractions {
                             connection.query("SELECT * FROM usuario_medalla WHERE Correo = ? AND Id_Medalla = ?",
                             [email, medallaId], function(err, med){
                                 if(err){
+                                    connection.release();
                                     callback(new Error("Error de acceso a la base de datos"));
                                 }
                                 else{
@@ -904,9 +974,11 @@ class DAOInteractions {
                                         connection.query("INSERT INTO usuario_medalla(Correo, Id_Medalla, Obtenidas, Fecha) VALUES (?,?,?,?)",
                                         [email, medallaId, 1, date], function(err, ok){
                                             if(err){
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, ok);
                                             }
                                         });
@@ -915,9 +987,11 @@ class DAOInteractions {
                                         connection.query("UPDATE usuario_medalla SET Obtenidas=Obtenidas+1 WHERE Correo = ? AND Id_Medalla = ?",
                                         [email, medallaId], function(err, ok){
                                             if(err){
+                                                connection.release();
                                                 callback(new Error("Error de acceso a la base de datos"));
                                             }
                                             else{
+                                                connection.release();
                                                 callback(null, ok);
                                             }
                                         });
@@ -926,6 +1000,7 @@ class DAOInteractions {
                             });
                         }
                         else{
+                            connection.release();
                             callback(null, true);
                         }
                     }

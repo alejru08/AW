@@ -1,4 +1,4 @@
-Cerrar conexion en los errores y al final(exit)
+Cerrar conexion en los errores y al final(exit) ======= HECHO
 muchos css
 6 etiquetas
 expresion regular en buscar
